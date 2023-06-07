@@ -98,6 +98,19 @@ services:
       - elasticsearch
     restart: unless-stopped
 
+  redis:
+    container_name: redis
+    hostname: redis
+    image: redis:latest
+    volumes:
+      - /c/data/redis/db:/data
+    ports:
+      - 6379:6379
+    mem_limit: 1024m
+    mem_reservation: 250m
+    networks:
+      - elk
+
 networks:
   elk:
     driver: bridge
